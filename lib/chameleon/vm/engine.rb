@@ -2,7 +2,11 @@ module Chameleon
   module VM
     class Engine
 
-      def initialize(output=STDOUT, input=STDIN)
+      attr_reader :input, :output
+
+      def initialize(input: STDIN, output: STDOUT)
+        @input = input
+        @output = output
       end
 
       def run!(bytecode)

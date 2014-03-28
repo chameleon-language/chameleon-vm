@@ -4,7 +4,7 @@ require 'spec_helper'
 describe 'running bytecode' do
   let(:output) { StringIO.new }
 
-  let(:vm) { Chameleon::VM::Engine.new(output, input) }
+  let(:vm) { Chameleon::VM::Engine.new(input: input, output: output) }
 
   describe 'iteration 01' do
     let(:gets) { Chameleon::VM::I_GETS }
