@@ -3,9 +3,9 @@ require 'spec_helper'
 
 describe Chameleon::VM::Engine do
 
-  it { expect(subject).to respond_to(:run!).with(1).argument }
-  it { expect(subject).to respond_to(:input) }
-  it { expect(subject).to respond_to(:output) }
+  it 'can run a bytecode sequence' do
+    expect(subject).to respond_to(:run!)
+  end
 
   context 'default input' do
     it 'is the standard input' do

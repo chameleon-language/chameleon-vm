@@ -10,6 +10,7 @@ describe 'running bytecode' do
     let(:gets) { Chameleon::VM::I_GETS }
     let(:puts) { Chameleon::VM::I_PUTS }
     let(:toi)  { Chameleon::VM::I_TOI  }
+    let(:tos)  { Chameleon::VM::I_TOS  }
     let(:add)  { Chameleon::VM::I_ADD  }
     let(:int1) { 40 }
     let(:int2) { 2 }
@@ -24,11 +25,11 @@ describe 'running bytecode' do
       input
     end
 
-    let(:bytecode) { [gets, toi, gets, toi, add, puts] }
+    let(:bytecode) { [gets, toi, gets, toi, add, tos, puts] }
 
     it 'it can read two integers from the command line and output their sum' do
       vm.run! bytecode
-      expect(vm.output.string).to eq(sum.to_s)
+      expect(vm.output.string.to_i).to eq(sum)
     end
   end
 
