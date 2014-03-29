@@ -22,5 +22,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'nyan-cat-formatter'
-  spec.add_development_dependency 'codeclimate-test-reporter'
 end

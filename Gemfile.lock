@@ -1,7 +1,9 @@
-PATH
-  remote: .
+GIT
+  remote: git://github.com/ronen/simplecov-gem-adapter.git
+  revision: aff2a9b94e02fc5322534315755ccb2391819feb
   specs:
-    chameleon-vm (0.0.1)
+    simplecov-gem-adapter (1.0.1)
+      simplecov (>= 0.8.1)
 
 GEM
   remote: https://rubygems.org/
@@ -13,7 +15,6 @@ GEM
     multi_json (1.9.2)
     nyan-cat-formatter (0.5.2)
       rspec (>= 2.13)
-    rake (10.2.0)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -32,9 +33,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.5)
-  chameleon-vm!
   codeclimate-test-reporter
   nyan-cat-formatter
-  rake
   rspec
+  simplecov-gem-adapter!

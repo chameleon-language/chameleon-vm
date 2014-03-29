@@ -5,9 +5,19 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+# ## CodeClimate coverage report ###############################################
+
+require 'simplecov-gem-adapter'
 require 'codeclimate-test-reporter'
+
+CodeClimate::TestReporter.configure do |config|
+  config.profile = 'gem'
+end
 CodeClimate::TestReporter.start
 
+# ##############################################################################
+
+require 'chameleon/vm'
 require 'support/matchers'
 require 'support/shared_contexts'
 

@@ -2,10 +2,6 @@ module Chameleon
   module VM
     @@instruction_table = []
 
-    def self.instruction_table
-      @@instruction_table
-    end
-
     def self.register_instruction(opcode, argument_count, instruction)
       @@instruction_table[opcode] = OpenStruct.new(argument_count: argument_count,
                                                    instruction: instruction)

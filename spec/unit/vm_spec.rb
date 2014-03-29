@@ -7,7 +7,6 @@ describe Chameleon::VM do
   end
 
   it 'has an instruction table' do
-    expect(subject).to respond_to(:instruction_table)
     expect(subject).to respond_to(:instruction).with(1).argument
   end
 
