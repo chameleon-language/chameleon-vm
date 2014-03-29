@@ -1,7 +1,7 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'chameleon/vm/version'
+require 'chameleon/vm'
 
 Gem::Specification.new do |spec|
   spec.name          = "chameleon-vm"
@@ -22,4 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'nyan-cat-formatter'
+  spec.add_development_dependency 'codeclimate-test-reporter'
 end

@@ -1,9 +1,7 @@
 language: ruby
 rvm:
-  - 1.9.2
-  - 1.9.3
   - 2.1.0
 
 before_install: 'echo ''gem: --no-ri --no-rdoc'' > ~/.gemrc'
 install: bundle install
-script: bundle exec rspec spec
+script: CODECLIMATE_REPO_TOKEN=f014269b1af1aad964fc17e14911ed2718aa460834d33e06054244740e5e9223 bundle exec rspec spec --format doc
