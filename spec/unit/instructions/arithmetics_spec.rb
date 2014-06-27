@@ -12,7 +12,7 @@ describe 'arithmetics instructions' do
     end
 
     let(:stack_top) { [tos, tos2] }
-    before { engine.stub(:pop_from_stack!).and_return(tos, tos2) }
+    before { allow(engine).to receive(:pop_from_stack!).and_return(tos, tos2) }
     let(:tos) { double 'cell', type: Chameleon::VM::T_INT, value: 13 }
     let(:tos2) { double 'cell', type: Chameleon::VM::T_INT, value: 29 }
 
