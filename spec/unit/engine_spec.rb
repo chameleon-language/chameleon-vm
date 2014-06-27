@@ -48,7 +48,8 @@ describe Chameleon::VM::Engine do
     let(:cell3) { double 'cell', type: 'sometype3', value: 'somevalue3' }
 
     describe '#push_to_stack!' do
-      it 'pushes the item to the top of the stack and increments the stack pointer' do
+      it 'pushes the item to the top of the stack
+         and increments the stack pointer' do
         subject.push_to_stack! cell1
         expect(subject.stack).to eq([cell1])
         expect(subject.stack_pointer).to eq(1)
@@ -77,9 +78,9 @@ describe Chameleon::VM::Engine do
 
       context 'when the stack is empty' do
         it 'it throws an exception' do
-          expect {
+          expect do
             subject.pop_from_stack!
-          }.to raise_exception(Chameleon::VM::StackUnderflowError)
+          end.to raise_exception(Chameleon::VM::StackUnderflowError)
         end
       end
 
@@ -103,8 +104,10 @@ describe Chameleon::VM::Engine do
 
       context 'when looking for more items' do
 
-        context 'when the stack has at least as many items as we are looking for' do
-          it 'returns the top items as an array (and doesn\'t change the stack_pointer)' do
+        context 'when the stack has at least
+                as many items as we are looking for' do
+          it 'returns the top items as an array
+             (and doesn\'t change the stack_pointer)' do
             expect(vm_with_stack.top_of_stack(2)).to eq([cell3, cell2])
             expect(vm_with_stack.stack_pointer).to eq(3)
 
@@ -113,11 +116,12 @@ describe Chameleon::VM::Engine do
           end
         end
 
-        context 'when the stack does\'nt have at least as many item as we are looking for' do
+        context 'when the stack does\'nt have
+                at least as many item as we are looking for' do
           it 'it throws an exception' do
-            expect {
+            expect do
               subject.top_of_stack(4)
-            }.to raise_exception(Chameleon::VM::StackUnderflowError)
+            end.to raise_exception(Chameleon::VM::StackUnderflowError)
           end
         end
       end
@@ -126,12 +130,13 @@ describe Chameleon::VM::Engine do
     describe '#run!' do
       context 'running an instruction without arguments' do
         let(:instructions) { [Chameleon::VM::I_TOS] }
-        let(:cell) { double 'cell', type: Chameleon::VM::T_INT, value: 42}
+        let(:cell) { double 'cell', type: Chameleon::VM::T_INT, value: 42 }
 
         it 'it calls the right instruction' do
           subject.push_to_stack! cell
 
-          expect(Chameleon::VM).to receive(:execute_instruction!).with(Chameleon::VM::I_TOS, [], subject)
+          expect(Chameleon::VM).to receive(:execute_instruction!)
+                                   .with(Chameleon::VM::I_TOS, [], subject)
 
           subject.run! instructions
         end

@@ -4,22 +4,23 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'chameleon/vm'
 
 Gem::Specification.new do |spec|
-  spec.name          = "chameleon-vm"
+  spec.name          = 'chameleon-vm'
   spec.version       = Chameleon::VM::VERSION
-  spec.authors       = ["zs"]
-  spec.email         = ["baloghzsof@gmail.com"]
-  spec.summary       = %q{chameleon vm}
-  spec.description   = %q{virtual machine for the chameleon language}
-  spec.homepage      = "https://github.com/chameleon-language/chameleon-vm"
-  spec.license       = "GPLv3"
+  spec.authors       = ['zs']
+  spec.email         = ['baloghzsof@gmail.com']
+  spec.summary       = 'chameleon vm'
+  spec.description   = 'virtual machine for the chameleon language'
+  spec.homepage      = 'https://github.com/chameleon-language/chameleon-vm'
+  spec.license       = 'GPLv3'
 
   spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
+  spec.executables   = spec.files.grep(/^bin\//) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(/^(test|spec|features)\//)
+  spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler', '~> 1.5'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'nyan-cat-formatter'
 end
