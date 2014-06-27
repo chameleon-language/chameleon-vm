@@ -1,6 +1,6 @@
 module Chameleon
+  # Virtual Machine
   module VM
-
     # input-output
     I_GETS  = 10
     I_PUTS  = 11
@@ -11,6 +11,5 @@ module Chameleon
 
     # arithmetics
     I_ADD   = 30
-
   end
 end

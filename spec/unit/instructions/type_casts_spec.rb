@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'type cast instructions' do
 
-  include_context "instruction related"
+  include_context 'instruction related'
 
   describe 'TOI' do
     let(:opcode) { Chameleon::VM::I_TOI }
@@ -12,7 +12,7 @@ describe 'type cast instructions' do
     end
 
     let(:stack_top_type)  { Chameleon::VM::T_STRING }
-    let(:stack_top_value) { "22" }
+    let(:stack_top_value) { '22' }
 
     it 'it converts the the value at the stack\'s top to integer' do
       expect(engine).to receive(:pop_from_stack!)

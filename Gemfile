@@ -8,4 +8,5 @@ group :development, :test do
   gem 'nyan-cat-formatter'
   gem 'simplecov-gem-adapter', github: 'ronen/simplecov-gem-adapter'
   gem 'codeclimate-test-reporter'
+  gem 'rubocop'
 end

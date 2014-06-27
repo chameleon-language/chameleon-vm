@@ -2,9 +2,13 @@ language: ruby
 rvm:
   - 2.1.0
 
-before_install: 'echo ''gem: --no-ri --no-rdoc'' > ~/.gemrc'
+before_install:
+  - 'echo ''gem: --no-ri --no-rdoc'' > ~/.gemrc'
+  - gem update --remote bundler
 install: bundle install
-script: bundle exec rspec spec --format doc
+script:
+  - bundle exec rspec spec --format doc
+  - bundle exec rubocop
 addons:
   code_climate:
     repo_token: f014269b1af1aad964fc17e14911ed2718aa460834d33e06054244740e5e9223

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'input-output instructions' do
 
-  include_context "instruction related"
+  include_context 'instruction related'
 
   describe 'PUTS' do
     let(:opcode) { Chameleon::VM::I_PUTS }
@@ -13,7 +13,7 @@ describe 'input-output instructions' do
 
     context 'when there is a string on the top of the stack' do
       let(:stack_top_type)  { Chameleon::VM::T_STRING }
-      let(:stack_top_value) { "O HAI" }
+      let(:stack_top_value) { 'O HAI' }
 
       it 'it removes it from the stack and prints it\'s value' do
         expect(engine).to receive(:pop_from_stack!)
@@ -25,14 +25,15 @@ describe 'input-output instructions' do
       end
     end
 
-    context 'when there is something other than a string on the top of the stack' do
+    context 'when there is something
+            other than a string on the top of the stack' do
       let(:stack_top_type) { 'notastring' }
 
       it 'it throws an exception and leaves the stack be' do
-        expect {
+        expect do
           expect(engine).not_to receive(:pop_from_stack!)
           instruction_execution.call
-        }.to raise_exception(Chameleon::VM::CorruptedStackError, /not string/)
+        end.to raise_exception(Chameleon::VM::CorruptedStackError, /not string/)
       end
     end
 
@@ -45,7 +46,8 @@ describe 'input-output instructions' do
       expect(instruction_argument_count).to eq(0)
     end
 
-    it 'gets a string from the input and pushes it (without trailing ws) to the stack' do
+    it 'gets a string from the input
+       and pushes it (without trailing ws) to the stack' do
       expect(engine.input).to receive(:gets)
 
       expect(engine).to receive(:push_to_stack!) do |cell|

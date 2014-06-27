@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'arithmetics instructions' do
 
-  include_context "instruction related"
+  include_context 'instruction related'
 
   describe 'ADD' do
     let(:opcode) { Chameleon::VM::I_ADD }
@@ -15,7 +15,6 @@ describe 'arithmetics instructions' do
     before { engine.stub(:pop_from_stack!).and_return(tos, tos2) }
     let(:tos) { double 'cell', type: Chameleon::VM::T_INT, value: 13 }
     let(:tos2) { double 'cell', type: Chameleon::VM::T_INT, value: 29 }
-
 
     context 'when there are two integers on the top of the stack' do
       it 'it removes the top two stack elements and puts back their sum' do
@@ -30,14 +29,15 @@ describe 'arithmetics instructions' do
       end
     end
 
-    context 'when there are anything other than two integers on the top of the stack' do
-      let(:tos) { double 'cell', type: Chameleon::VM::T_STRING, value: "42" }
+    context 'when there are anything other
+            than two integers on the top of the stack' do
+      let(:tos) { double 'cell', type: Chameleon::VM::T_STRING, value: '42' }
 
       it 'it throws an exception and leaves the stack be' do
-        expect {
+        expect do
           expect(engine).not_to receive(:pop_from_stack!)
           instruction_execution.call
-        }.to raise_exception(Chameleon::VM::CorruptedStackError, /not int/)
+        end.to raise_exception(Chameleon::VM::CorruptedStackError, /not int/)
       end
     end
 
