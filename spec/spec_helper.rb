@@ -9,11 +9,14 @@
 
 require 'simplecov-gem-adapter'
 require 'codeclimate-test-reporter'
+require 'coveralls'
 
 CodeClimate::TestReporter.configure do |config|
   config.profile = 'gem'
 end
 CodeClimate::TestReporter.start
+
+Coveralls.wear!
 
 # ##############################################################################
 

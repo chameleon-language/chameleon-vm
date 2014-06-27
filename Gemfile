@@ -9,4 +9,5 @@ group :development, :test do
   gem 'simplecov-gem-adapter', github: 'ronen/simplecov-gem-adapter'
   gem 'codeclimate-test-reporter'
   gem 'rubocop'
+  gem 'coveralls', require: false
 end
