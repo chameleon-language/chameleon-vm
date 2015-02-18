@@ -7,6 +7,7 @@ group :development, :test do
   gem 'rspec'
   gem 'nyan-cat-formatter'
   gem 'simplecov-gem-profile'
-  gem 'codeclimate-test-reporter'
   gem 'rubocop'
+  gem 'rubycritic', require: false
+  gem 'coveralls', require: false
 end

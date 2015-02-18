@@ -1,8 +1,6 @@
 require 'simplecov-gem-profile'
-require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.configure { |config| config.profile = 'gem' }
-CodeClimate::TestReporter.start
-
+require 'coveralls'
+Coveralls.wear! 'gem'
 SimpleCov.start 'gem' if ENV['COVERAGE']
 
 require 'chameleon/vm'
