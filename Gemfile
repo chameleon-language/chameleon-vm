@@ -6,8 +6,7 @@ source 'https://rubygems.org'
 group :development, :test do
   gem 'rspec'
   gem 'nyan-cat-formatter'
-  gem 'simplecov-gem-adapter', github: 'ronen/simplecov-gem-adapter'
+  gem 'simplecov-gem-profile'
   gem 'codeclimate-test-reporter'
   gem 'rubocop'
-  gem 'coveralls', require: false
 end
