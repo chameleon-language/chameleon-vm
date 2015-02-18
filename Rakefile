@@ -1,8 +1,10 @@
 require 'bundler/gem_tasks'
 
 if ENV['RACK_ENV'] == 'test'
+  require 'rainbow'
   require 'rspec/core/rake_task'
   require 'rubocop/rake_task'
+  require 'rubycritic'
 
   namespace :ci do
     desc 'Run specs'
@@ -21,15 +23,35 @@ if ENV['RACK_ENV'] == 'test'
       t.options = ['-D']
     end
 
+    desc 'Run rubycritic'
+    task :rubycritic do
+      @rubycritic = ::Rubycritic::Orchestrator.new
+      analysed_files = @rubycritic.critique ['lib']
+      analysed_files.each do |file|
+        color = case file.rating.to_s
+                when 'A' then :green
+                when 'B' then :yellow
+                else :red
+                end
+        puts Rainbow("\s\s#{file.rating} | #{file.path}").send(color)
+      end
+      fail 'something smells' if analysed_files.map { |file| file.rating.to_s }.max > 'B'
+    end
+
     desc 'Run things for ci'
     task :build do
-      puts "\033[34mRunning rubocop:\033[0m"
+      puts Rainbow('Running rubocop').blue
       Rake::Task['ci:rubocop'].invoke
 
       puts
 
-      puts "\033[34mRunning rspec:\033[0m"
+      puts Rainbow('Running rspec').blue
       Rake::Task['ci:specs'].invoke
+
+      puts
+
+      puts Rainbow('Running rubycritic').blue
+      Rake::Task['ci:rubycritic'].invoke
     end
   end
 end
