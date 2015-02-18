@@ -2,7 +2,6 @@ require 'stringio'
 require 'spec_helper'
 
 describe Chameleon::VM::Engine do
-
   it 'can run a bytecode sequence' do
     expect(subject).to respond_to(:run!)
   end
@@ -83,7 +82,6 @@ describe Chameleon::VM::Engine do
           end.to raise_exception(Chameleon::VM::StackUnderflowError)
         end
       end
-
     end
 
     describe '#top_of_stack' do
@@ -103,7 +101,6 @@ describe Chameleon::VM::Engine do
       end
 
       context 'when looking for more items' do
-
         context 'when the stack has at least
                 as many items as we are looking for' do
           it 'returns the top items as an array
@@ -136,12 +133,11 @@ describe Chameleon::VM::Engine do
           subject.push_to_stack! cell
 
           expect(Chameleon::VM).to receive(:execute_instruction!)
-                                   .with(Chameleon::VM::I_TOS, [], subject)
+            .with(Chameleon::VM::I_TOS, [], subject)
 
           subject.run! instructions
         end
       end
     end
-
   end
 end

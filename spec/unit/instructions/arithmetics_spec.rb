@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'arithmetics instructions' do
-
   include_context 'instruction related'
 
   describe 'ADD' do
@@ -40,6 +39,5 @@ describe 'arithmetics instructions' do
         end.to raise_exception(Chameleon::VM::CorruptedStackError, /not int/)
       end
     end
-
   end
 end

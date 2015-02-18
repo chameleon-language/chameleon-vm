@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'type cast instructions' do
-
   include_context 'instruction related'
 
   describe 'TOI' do
@@ -47,5 +46,4 @@ describe 'type cast instructions' do
       instruction_execution.call
     end
   end
-
 end
