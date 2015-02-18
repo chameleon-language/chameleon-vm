@@ -32,5 +32,4 @@ describe 'running bytecode' do
       expect(vm.output.string.to_i).to eq(sum)
     end
   end
-
 end

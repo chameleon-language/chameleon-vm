@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'input-output instructions' do
-
   include_context 'instruction related'
 
   describe 'PUTS' do
@@ -36,7 +35,6 @@ describe 'input-output instructions' do
         end.to raise_exception(Chameleon::VM::CorruptedStackError, /not string/)
       end
     end
-
   end
 
   describe 'GETS' do
@@ -57,6 +55,5 @@ describe 'input-output instructions' do
 
       instruction_execution.call
     end
-
   end
 end

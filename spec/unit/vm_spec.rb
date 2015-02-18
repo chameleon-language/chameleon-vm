@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Chameleon::VM do
-
   it 'has a version' do
     expect(subject).to have_constant(:VERSION)
   end
@@ -30,5 +29,4 @@ describe Chameleon::VM do
       expect(subject).to have_constant(type)
     end
   end
-
 end
