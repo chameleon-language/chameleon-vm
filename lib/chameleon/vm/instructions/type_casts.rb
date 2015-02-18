@@ -1,11 +1,2 @@
-Chameleon::VM.register_instruction Chameleon::VM::I_TOI, 0,
-  (lambda do |_args, engine|
-    engine.push_to_stack! OpenStruct.new(type: Chameleon::VM::T_INT,
-                                         value: engine.pop_from_stack!.value.to_i)
-  end)
-
-Chameleon::VM.register_instruction Chameleon::VM::I_TOS, 0,
-  (lambda do |_args, engine|
-    engine.push_to_stack! OpenStruct.new(type: Chameleon::VM::T_STRING,
-                                         value: engine.pop_from_stack!.value.to_s)
-  end)
+require_relative 'type_casts/to_i'
+require_relative 'type_casts/to_s'

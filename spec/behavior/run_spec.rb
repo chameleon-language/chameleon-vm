@@ -6,15 +6,17 @@ describe 'running bytecode' do
 
   let(:vm) { Chameleon::VM::Engine.new(input: input, output: output) }
 
-  describe 'iteration 01' do
-    let(:gets) { Chameleon::VM::I_GETS }
-    let(:puts) { Chameleon::VM::I_PUTS }
-    let(:toi)  { Chameleon::VM::I_TOI  }
-    let(:tos)  { Chameleon::VM::I_TOS  }
+  let(:gets) { Chameleon::VM::I_GETS }
+  let(:puts) { Chameleon::VM::I_PUTS }
+  let(:toi)  { Chameleon::VM::I_TOI  }
+  let(:tos)  { Chameleon::VM::I_TOS  }
+
+  let(:int1) { 2 }
+  let(:int2) { 40 }
+
+  describe 'arithmetics' do
     let(:add)  { Chameleon::VM::I_ADD  }
-    let(:int1) { 40 }
-    let(:int2) { 2 }
-    let(:sum)  { int1 + int2 }
+    let(:multiply) { Chameleon::VM::I_MULTIPLY }
 
     let(:input) do
       input = StringIO.new
@@ -25,11 +27,26 @@ describe 'running bytecode' do
       input
     end
 
-    let(:bytecode) { [gets, toi, gets, toi, add, tos, puts] }
+    describe 'iteration 01' do
+      let(:sum)  { int1 + int2 }
 
-    it 'it can read two integers from the command line and output their sum' do
-      vm.run! bytecode
-      expect(vm.output.string.to_i).to eq(sum)
+      let(:bytecode) { [gets, toi, gets, toi, add, tos, puts] }
+
+      it 'it can read two integers from the command line and output their sum' do
+        vm.run! bytecode
+        expect(vm.output.string.to_i).to eq(sum)
+      end
+    end
+
+    describe 'iteration 02' do
+      let(:product)  { int1 * int2 }
+
+      let(:bytecode) { [gets, toi, gets, toi, multiply, tos, puts] }
+
+      it 'it can read two integers from the command line and output their product' do
+        vm.run! bytecode
+        expect(vm.output.string.to_i).to eq(product)
+      end
     end
   end
 end
