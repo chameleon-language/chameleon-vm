@@ -3,6 +3,8 @@ require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.configure { |config| config.profile = 'gem' }
 CodeClimate::TestReporter.start
 
+SimpleCov.start 'gem' if ENV['COVERAGE']
+
 require 'chameleon/vm'
 require 'support/matchers'
 require 'support/shared_contexts'
