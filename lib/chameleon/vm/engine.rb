@@ -18,7 +18,7 @@ module Chameleon
           opcode = bytecode[@pc]
           num_of_args = Chameleon::VM.instruction_argument_count(opcode)
 
-          args = []
+          args = bytecode[@pc + 1, @pc + num_of_args] || []
 
           Chameleon::VM.execute_instruction!(opcode, args, self)
 

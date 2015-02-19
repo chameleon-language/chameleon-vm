@@ -9,8 +9,11 @@ module Chameleon
     I_TOS       = 20
     I_TOI       = 21
 
+    # push constant
+    I_PUSH_INT  = 30
+
     # arithmetics
-    I_ADD       = 30
-    I_MULTIPLY  = 32
+    I_ADD       = 40
+    I_MULTIPLY  = 42
   end
 end

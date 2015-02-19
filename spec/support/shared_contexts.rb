@@ -21,7 +21,9 @@ shared_context 'instruction related' do
     Chameleon::VM.instruction_argument_count(opcode)
   end
 
+  let(:instruction_arguments) { [] }
+
   let(:instruction_execution) do
-    -> { Chameleon::VM.execute_instruction!(opcode, [], engine) }
+    -> { Chameleon::VM.execute_instruction!(opcode, instruction_arguments, engine) }
   end
 end

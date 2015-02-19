@@ -48,5 +48,16 @@ describe 'running bytecode' do
         expect(vm.output.string.to_i).to eq(product)
       end
     end
+
+    describe 'iteration 03' do
+      let(:push_int) { Chameleon::VM::I_PUSH_INT }
+
+      let(:bytecode) { [push_int, int1, tos, puts] }
+
+      it 'can output an integer constant' do
+        vm.run! bytecode
+        expect(vm.output.string.to_i).to eq(int1)
+      end
+    end
   end
 end
