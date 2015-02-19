@@ -14,7 +14,9 @@ describe 'running bytecode' do
   let(:int1) { 2 }
   let(:int2) { 40 }
 
-  describe 'arithmetics' do
+  let(:input) { StringIO.new }
+
+  describe 'iteration 01 & 02' do
     let(:add)  { Chameleon::VM::I_ADD  }
     let(:multiply) { Chameleon::VM::I_MULTIPLY }
 
@@ -27,7 +29,7 @@ describe 'running bytecode' do
       input
     end
 
-    describe 'iteration 01' do
+    describe 'add' do
       let(:sum)  { int1 + int2 }
 
       let(:bytecode) { [gets, toi, gets, toi, add, tos, puts] }
@@ -38,7 +40,7 @@ describe 'running bytecode' do
       end
     end
 
-    describe 'iteration 02' do
+    describe 'multiply' do
       let(:product)  { int1 * int2 }
 
       let(:bytecode) { [gets, toi, gets, toi, multiply, tos, puts] }
@@ -48,13 +50,30 @@ describe 'running bytecode' do
         expect(vm.output.string.to_i).to eq(product)
       end
     end
+  end
 
-    describe 'iteration 03' do
-      let(:push_int) { Chameleon::VM::I_PUSH_INT }
+  describe 'iteration 03' do
+    let(:push_int) { Chameleon::VM::I_PUSH_INT }
+    let(:store_int_var) { Chameleon::VM::I_STORE_INT_VAR }
+    let(:load_int_var) { Chameleon::VM::I_LOAD_INT_VAR }
 
+    context 'push int' do
       let(:bytecode) { [push_int, int1, tos, puts] }
 
       it 'can output an integer constant' do
+        vm.run! bytecode
+        expect(vm.output.string.to_i).to eq(int1)
+      end
+    end
+
+    context 'variables' do
+      let(:var_index) { 3 }
+
+      let(:bytecode) do
+        [push_int, int1, store_int_var, var_index, load_int_var, var_index, tos, puts]
+      end
+
+      it 'can store and load integer variables' do
         vm.run! bytecode
         expect(vm.output.string.to_i).to eq(int1)
       end
