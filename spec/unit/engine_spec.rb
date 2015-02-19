@@ -6,11 +6,6 @@ describe Chameleon::VM::Engine do
     expect(subject).to respond_to(:run!)
   end
 
-  it 'has a stack and a stack pointer' do
-    expect(subject).to respond_to(:stack)
-    expect(subject).to respond_to(:stack_pointer)
-  end
-
   context 'default input' do
     it 'is the standard input' do
       expect(subject.input).to equal(STDIN)
@@ -46,19 +41,29 @@ describe Chameleon::VM::Engine do
     let(:cell2) { double 'cell', type: 'sometype2', value: 'somevalue2' }
     let(:cell3) { double 'cell', type: 'sometype3', value: 'somevalue3' }
 
+    describe '#assign_variable! & #fetch_variable' do
+      let(:index) { 2 }
+
+      it 'assigns/fetches variable by index' do
+        expect(subject.fetch_variable(index)).to be_nil
+        subject.assign_variable! index, cell1
+        expect(subject.fetch_variable(index)).to eq(cell1)
+      end
+    end
+
     describe '#push_to_stack!' do
       it 'pushes the item to the top of the stack
          and increments the stack pointer' do
         subject.push_to_stack! cell1
-        expect(subject.stack).to eq([cell1])
+        expect(subject.top_of_stack).to eq(cell1)
         expect(subject.stack_pointer).to eq(1)
 
         subject.push_to_stack! cell2
-        expect(subject.stack).to eq([cell1, cell2])
+        expect(subject.top_of_stack(2)).to eq([cell2, cell1])
         expect(subject.stack_pointer).to eq(2)
 
         subject.push_to_stack! cell3
-        expect(subject.stack).to eq([cell1, cell2, cell3])
+        expect(subject.top_of_stack(3)).to eq([cell3, cell2, cell1])
         expect(subject.stack_pointer).to eq(3)
       end
     end

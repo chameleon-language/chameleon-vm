@@ -2,13 +2,14 @@ module Chameleon
   module VM
     # VM Engine
     class Engine
-      attr_reader :input, :output, :stack, :stack_pointer
+      attr_reader :input, :output, :stack_pointer
 
       def initialize(input: STDIN, output: STDOUT)
         @input          = input
         @output         = output
         @stack          = []
         @stack_pointer  = 0
+        @variables      = []
       end
 
       def run!(bytecode, entry_point = 0)
@@ -26,6 +27,14 @@ module Chameleon
         end
       end
 
+      def assign_variable!(index, cell)
+        @variables[index] = cell
+      end
+
+      def fetch_variable(index)
+        @variables[index]
+      end
+
       def push_to_stack!(cell)
         @stack[@stack_pointer] = cell
         @stack_pointer += 1
@@ -41,10 +50,10 @@ module Chameleon
       end
 
       def top_of_stack(count = 1)
-        if stack.count < count
+        if @stack.count < count
           fail Chameleon::VM::StackUnderflowError,
                %(was looking for #{count} top items,
-                 but the stack has only #{stack.count})
+                 but the stack has only #{@stack.count})
         end
 
         cells = @stack[(@stack_pointer - count)..(@stack_pointer - 1)].reverse
