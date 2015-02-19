@@ -1,6 +1,5 @@
 module Chameleon
   module VM
-    # VM Engine
     class Engine
       attr_reader :input, :output, :stack_pointer
 

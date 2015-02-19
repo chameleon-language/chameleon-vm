@@ -3,6 +3,7 @@ require 'ostruct'
 require 'chameleon/vm/version'
 
 require 'chameleon/vm/exceptions'
+require 'chameleon/vm/validator'
 
 require 'chameleon/vm/instructions/instruction_table'
 

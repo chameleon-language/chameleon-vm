@@ -32,7 +32,7 @@ describe 'push constant instructions' do
         expect do
           expect(engine).not_to receive(:push_to_stack!)
           instruction_execution.call
-        end.to raise_exception(Chameleon::VM::InvalidArgumentError, /not int/)
+        end.to raise_exception(Chameleon::VM::InvalidArgumentError)
       end
     end
   end

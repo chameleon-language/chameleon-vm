@@ -32,7 +32,7 @@ describe 'input-output instructions' do
         expect do
           expect(engine).not_to receive(:pop_from_stack!)
           instruction_execution.call
-        end.to raise_exception(Chameleon::VM::CorruptedStackError, /not string/)
+        end.to raise_exception(Chameleon::VM::CorruptedStackError)
       end
     end
   end

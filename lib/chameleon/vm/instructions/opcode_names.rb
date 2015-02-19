@@ -19,5 +19,6 @@ module Chameleon
     # variables
     I_STORE_INT_VAR = 50
     I_LOAD_INT_VAR  = 60
+    I_INCR_INT_VAR  = 70
   end
 end

@@ -36,7 +36,7 @@ describe 'arithmetics instructions' do
         expect do
           expect(engine).not_to receive(:pop_from_stack!)
           instruction_execution.call
-        end.to raise_exception(Chameleon::VM::CorruptedStackError, /not int/)
+        end.to raise_exception(Chameleon::VM::CorruptedStackError)
       end
     end
   end
@@ -74,7 +74,7 @@ describe 'arithmetics instructions' do
         expect do
           expect(engine).not_to receive(:pop_from_stack!)
           instruction_execution.call
-        end.to raise_exception(Chameleon::VM::CorruptedStackError, /not int/)
+        end.to raise_exception(Chameleon::VM::CorruptedStackError)
       end
     end
   end
