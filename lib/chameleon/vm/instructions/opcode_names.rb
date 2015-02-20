@@ -11,6 +11,7 @@ module Chameleon
 
     # push constant
     I_PUSH_INT      = 30
+    I_PUSH_STRING   = 31
 
     # arithmetics
     I_ADD           = 40

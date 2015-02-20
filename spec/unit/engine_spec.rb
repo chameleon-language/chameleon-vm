@@ -44,10 +44,10 @@ describe Chameleon::VM::Engine do
     describe '#goto' do
       let(:index) { 12 }
 
-      it 'moves the stack pointer' do
-        expect(subject.stack_pointer).to eq(0)
+      it 'moves the program pointer' do
+        expect(subject.pc).to eq(0)
         subject.goto index
-        expect(subject.stack_pointer).to eq(index)
+        expect(subject.pc).to eq(index)
       end
     end
 

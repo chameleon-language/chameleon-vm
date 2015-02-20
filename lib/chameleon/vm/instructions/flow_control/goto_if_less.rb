@@ -9,6 +9,7 @@ Chameleon::VM.register_instruction Chameleon::VM::I_GOTO_IF_LESS, 1,
                                                               Chameleon::VM::T_INT,
                                                               'GOTO_IF_LESS'
 
-    lhs, rhs = engine.pop_from_stack(2)
+    lhs = engine.pop_from_stack
+    rhs = engine.pop_from_stack
     engine.goto line if lhs.value > rhs.value
   end)

@@ -38,7 +38,7 @@ describe 'flow control related instructions' do
   describe 'GOTO_IF_LESS' do
     let(:opcode) { Chameleon::VM::I_GOTO_IF_LESS }
     before { allow(engine).to receive(:top_of_stack).and_return(stack_top) }
-    before { allow(engine).to receive(:pop_from_stack).and_return(stack_top) }
+    before { allow(engine).to receive(:pop_from_stack).and_return(*stack_top) }
     let(:stack_top) { [tos2, tos] }
     let(:tos) { double 'cell', type: Chameleon::VM::T_INT, value: 13 }
     let(:tos2) { double 'cell', type: Chameleon::VM::T_INT, value: 29 }
@@ -50,7 +50,7 @@ describe 'flow control related instructions' do
     context 'when there are two integers on the top of the stack' do
       context 'when the condition is true' do
         it 'it executes the goto' do
-          expect(engine).to receive(:pop_from_stack).with(2)
+          expect(engine).to receive(:pop_from_stack).twice
 
           expect(engine).to receive(:goto) do |line|
             expect(line).to eq(line)
@@ -65,7 +65,7 @@ describe 'flow control related instructions' do
         let(:tos) { double 'cell', type: Chameleon::VM::T_INT, value: 29 }
 
         it 'it executes the goto' do
-          expect(engine).to receive(:pop_from_stack).with(2)
+          expect(engine).to receive(:pop_from_stack).twice
 
           expect(engine).not_to receive(:goto)
 

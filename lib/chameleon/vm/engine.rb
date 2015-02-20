@@ -1,10 +1,10 @@
 module Chameleon
   module VM
     class Engine
-      attr_reader :input, :output
-      attr_accessor :stack_pointer
+      attr_reader :input, :output, :stack_pointer
+      attr_accessor :pc
 
-      alias_method :goto, :stack_pointer=
+      alias_method :goto, :pc=
 
       def initialize(input: STDIN, output: STDOUT)
         @input          = input
@@ -12,6 +12,7 @@ module Chameleon
         @stack          = []
         @stack_pointer  = 0
         @variables      = []
+        @pc             = 0
       end
 
       def run(bytecode, entry_point = 0)
@@ -21,11 +22,10 @@ module Chameleon
           opcode = bytecode[@pc]
           num_of_args = Chameleon::VM.instruction_argument_count(opcode)
 
-          args = bytecode[@pc + 1, @pc + num_of_args] || []
+          args = num_of_args > 0 ? bytecode[(@pc + 1)..(@pc + num_of_args)] : []
+          @pc += (num_of_args + 1)
 
           Chameleon::VM.execute_instruction!(opcode, args, self)
-
-          @pc += (num_of_args + 1)
         end
       end
 
