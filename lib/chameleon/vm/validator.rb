@@ -19,7 +19,7 @@ module Chameleon
 
       def self.perform_multiple_tos_type_check!(engine, num, type, op_name)
         cells = engine.top_of_stack(num)
-        return if cells.all? { |cell| cell.type == type }
+        return if cells.all? { |cell| cell_type_matches? cell, type }
 
         fail Chameleon::VM::CorruptedStackError,
              %(ERROR while trying to #{op_name} '#{cells.map(&:inspect)}',
@@ -35,11 +35,15 @@ module Chameleon
       end
 
       def self.perform_variable_type_check!(var, type, op_name)
-        return if var.respond_to?(:type) && var.type == type
+        return if cell_type_matches? var, type
 
         fail Chameleon::VM::InvalidVariableTypeError,
              %(ERROR while trying to #{op_name} '#{var.inspect}',
                type is not '#{type}')
+      end
+
+      def self.cell_type_matches?(cell, type)
+        cell.respond_to?(:type) && cell.type == type
       end
     end
   end

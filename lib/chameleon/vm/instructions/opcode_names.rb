@@ -23,5 +23,6 @@ module Chameleon
 
     # flow control
     I_GOTO          = 66
+    I_GOTO_IF_LESS  = 67
   end
 end
