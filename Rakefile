@@ -1,5 +1,10 @@
 require 'bundler/gem_tasks'
 
+desc 'Open an irb session preloaded with this library'
+task :console do
+  sh 'irb -rubygems -I lib -r chameleon/vm.rb'
+end
+
 if ENV['RACK_ENV'] == 'test'
   require 'rainbow'
   require 'rspec/core/rake_task'

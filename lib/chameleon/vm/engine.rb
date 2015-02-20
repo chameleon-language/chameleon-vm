@@ -1,7 +1,10 @@
 module Chameleon
   module VM
     class Engine
-      attr_reader :input, :output, :stack_pointer
+      attr_reader :input, :output
+      attr_accessor :stack_pointer
+
+      alias_method :goto!, :stack_pointer=
 
       def initialize(input: STDIN, output: STDOUT)
         @input          = input

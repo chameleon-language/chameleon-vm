@@ -41,6 +41,16 @@ describe Chameleon::VM::Engine do
     let(:cell2) { double 'cell', type: 'sometype2', value: 'somevalue2' }
     let(:cell3) { double 'cell', type: 'sometype3', value: 'somevalue3' }
 
+    describe '#goto!' do
+      let(:index) { 12 }
+
+      it 'moves the stack pointer' do
+        expect(subject.stack_pointer).to eq(0)
+        subject.goto! index
+        expect(subject.stack_pointer).to eq(index)
+      end
+    end
+
     describe '#assign_variable! & #fetch_variable' do
       let(:index) { 2 }
 
