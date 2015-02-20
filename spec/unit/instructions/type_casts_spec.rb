@@ -14,9 +14,9 @@ describe 'type cast instructions' do
     let(:stack_top_value) { '22' }
 
     it 'it converts the the value at the stack\'s top to integer' do
-      expect(engine).to receive(:pop_from_stack!)
+      expect(engine).to receive(:pop_from_stack)
 
-      expect(engine).to receive(:push_to_stack!) do |cell|
+      expect(engine).to receive(:push_to_stack) do |cell|
         expect(cell.type).to eq(Chameleon::VM::T_INT)
         expect(cell.value).to eq(stack_top_value.to_i)
       end
@@ -36,9 +36,9 @@ describe 'type cast instructions' do
     let(:stack_top_value) { 22 }
 
     it 'it converts the the value at the stack\'s top to string' do
-      expect(engine).to receive(:pop_from_stack!)
+      expect(engine).to receive(:pop_from_stack)
 
-      expect(engine).to receive(:push_to_stack!) do |cell|
+      expect(engine).to receive(:push_to_stack) do |cell|
         expect(cell.type).to eq(Chameleon::VM::T_STRING)
         expect(cell.value).to eq(stack_top_value.to_s)
       end

@@ -1,9 +1,9 @@
 shared_context 'instruction related' do
   let(:engine) do
     double 'engine',
-           push_to_stack!: stack_top,
+           push_to_stack: stack_top,
            top_of_stack: stack_top,
-           pop_from_stack!: stack_pop,
+           pop_from_stack: stack_pop,
            output: double('output').as_null_object,
            input: double('input', gets: gets_value)
   end
@@ -21,7 +21,9 @@ shared_context 'instruction related' do
     Chameleon::VM.instruction_argument_count(opcode)
   end
 
+  let(:instruction_arguments) { [] }
+
   let(:instruction_execution) do
-    -> { Chameleon::VM.execute_instruction!(opcode, [], engine) }
+    -> { Chameleon::VM.execute_instruction!(opcode, instruction_arguments, engine) }
   end
 end
