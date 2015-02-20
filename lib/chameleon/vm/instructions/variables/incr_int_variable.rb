@@ -11,6 +11,6 @@ Chameleon::VM.register_instruction Chameleon::VM::I_INCR_INT_VAR, 2,
                                                           Chameleon::VM::T_INT,
                                                           'INCR_INT_VAR'
 
-    engine.assign_variable! index, OpenStruct.new(type: Chameleon::VM::T_INT,
-                                                  value: (var.value + inc))
+    engine.assign_variable index, OpenStruct.new(type: Chameleon::VM::T_INT,
+                                                 value: (var.value + inc))
   end)

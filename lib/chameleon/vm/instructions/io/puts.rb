@@ -4,5 +4,5 @@ Chameleon::VM.register_instruction Chameleon::VM::I_PUTS, 0,
                                                      Chameleon::VM::T_STRING,
                                                      'PUTS'
 
-    engine.output.puts engine.pop_from_stack!.value
+    engine.output.puts engine.pop_from_stack.value
   end)

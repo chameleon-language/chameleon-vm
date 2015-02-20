@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Chameleon::VM::Engine do
   it 'can run a bytecode sequence' do
-    expect(subject).to respond_to(:run!)
+    expect(subject).to respond_to(:run)
   end
 
   context 'default input' do
@@ -51,40 +51,40 @@ describe Chameleon::VM::Engine do
       end
     end
 
-    describe '#assign_variable! & #fetch_variable' do
+    describe '#assign_variable & #fetch_variable' do
       let(:index) { 2 }
 
       it 'assigns/fetches variable by index' do
         expect(subject.fetch_variable(index)).to be_nil
-        subject.assign_variable! index, cell1
+        subject.assign_variable index, cell1
         expect(subject.fetch_variable(index)).to eq(cell1)
       end
     end
 
-    describe '#push_to_stack!' do
+    describe '#push_to_stack' do
       it 'pushes the item to the top of the stack
          and increments the stack pointer' do
-        subject.push_to_stack! cell1
+        subject.push_to_stack cell1
         expect(subject.top_of_stack).to eq(cell1)
         expect(subject.stack_pointer).to eq(1)
 
-        subject.push_to_stack! cell2
+        subject.push_to_stack cell2
         expect(subject.top_of_stack(2)).to eq([cell2, cell1])
         expect(subject.stack_pointer).to eq(2)
 
-        subject.push_to_stack! cell3
+        subject.push_to_stack cell3
         expect(subject.top_of_stack(3)).to eq([cell3, cell2, cell1])
         expect(subject.stack_pointer).to eq(3)
       end
     end
 
-    describe '#pop_from_stack!' do
+    describe '#pop_from_stack' do
       context 'when there is at least one item in the stack' do
         it 'removes the item from the stack and returns it' do
-          subject.push_to_stack! cell1
-          subject.push_to_stack! cell3
+          subject.push_to_stack cell1
+          subject.push_to_stack cell3
 
-          item = subject.pop_from_stack!
+          item = subject.pop_from_stack
           expect(item).to eq(cell3)
           expect(subject.stack_pointer).to eq(1)
         end
@@ -93,7 +93,7 @@ describe Chameleon::VM::Engine do
       context 'when the stack is empty' do
         it 'it throws an exception' do
           expect do
-            subject.pop_from_stack!
+            subject.pop_from_stack
           end.to raise_exception(Chameleon::VM::StackUnderflowError)
         end
       end
@@ -101,9 +101,9 @@ describe Chameleon::VM::Engine do
 
     describe '#top_of_stack' do
       let(:vm_with_stack) do
-        subject.push_to_stack! cell1
-        subject.push_to_stack! cell2
-        subject.push_to_stack! cell3
+        subject.push_to_stack cell1
+        subject.push_to_stack cell2
+        subject.push_to_stack cell3
 
         subject
       end
@@ -139,18 +139,18 @@ describe Chameleon::VM::Engine do
       end
     end
 
-    describe '#run!' do
+    describe '#run' do
       context 'running an instruction without arguments' do
         let(:instructions) { [Chameleon::VM::I_TOS] }
         let(:cell) { double 'cell', type: Chameleon::VM::T_INT, value: 42 }
 
         it 'it calls the right instruction' do
-          subject.push_to_stack! cell
+          subject.push_to_stack cell
 
           expect(Chameleon::VM).to receive(:execute_instruction!)
             .with(Chameleon::VM::I_TOS, [], subject)
 
-          subject.run! instructions
+          subject.run instructions
         end
       end
     end

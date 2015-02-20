@@ -14,10 +14,10 @@ module Chameleon
         @variables      = []
       end
 
-      def run!(bytecode, entry_point = 0)
+      def run(bytecode, entry_point = 0)
         @pc = entry_point
 
-        until bytecode[@pc].nil?
+        while bytecode[@pc]
           opcode = bytecode[@pc]
           num_of_args = Chameleon::VM.instruction_argument_count(opcode)
 
@@ -29,7 +29,7 @@ module Chameleon
         end
       end
 
-      def assign_variable!(index, cell)
+      def assign_variable(index, cell)
         @variables[index] = cell
       end
 
@@ -37,14 +37,14 @@ module Chameleon
         @variables[index]
       end
 
-      def push_to_stack!(cell)
+      def push_to_stack(cell)
         @stack[@stack_pointer] = cell
         @stack_pointer += 1
 
         cell
       end
 
-      def pop_from_stack!
+      def pop_from_stack
         cell = top_of_stack
         @stack_pointer -= 1
 

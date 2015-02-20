@@ -10,5 +10,5 @@ Chameleon::VM.register_instruction Chameleon::VM::I_LOAD_INT_VAR, 1,
                                                           Chameleon::VM::T_INT,
                                                           'LOAD_INT_VAR'
 
-    engine.push_to_stack! var
+    engine.push_to_stack var
   end)

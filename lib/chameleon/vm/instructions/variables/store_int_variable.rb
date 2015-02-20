@@ -8,5 +8,5 @@ Chameleon::VM.register_instruction Chameleon::VM::I_STORE_INT_VAR, 1,
                                                      Chameleon::VM::T_INT,
                                                      'STORE_INT_VAR'
 
-    engine.assign_variable! index, engine.pop_from_stack!
+    engine.assign_variable index, engine.pop_from_stack
   end)

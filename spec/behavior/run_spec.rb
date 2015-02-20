@@ -35,7 +35,7 @@ describe 'running bytecode' do
       let(:bytecode) { [gets, toi, gets, toi, add, tos, puts] }
 
       it 'it can read two integers from the command line and output their sum' do
-        vm.run! bytecode
+        vm.run bytecode
         expect(vm.output.string.to_i).to eq(sum)
       end
     end
@@ -46,7 +46,7 @@ describe 'running bytecode' do
       let(:bytecode) { [gets, toi, gets, toi, multiply, tos, puts] }
 
       it 'it can read two integers from the command line and output their product' do
-        vm.run! bytecode
+        vm.run bytecode
         expect(vm.output.string.to_i).to eq(product)
       end
     end
@@ -62,7 +62,7 @@ describe 'running bytecode' do
       let(:bytecode) { [push_int, int1, tos, puts] }
 
       it 'can output an integer constant' do
-        vm.run! bytecode
+        vm.run bytecode
         expect(vm.output.string.to_i).to eq(int1)
       end
     end
@@ -75,7 +75,7 @@ describe 'running bytecode' do
       end
 
       it 'can store and load integer variables' do
-        vm.run! bytecode
+        vm.run bytecode
         expect(vm.output.string.to_i).to eq(int1)
       end
     end
@@ -92,7 +92,7 @@ describe 'running bytecode' do
       end
 
       it 'increment an integer variables' do
-        vm.run! bytecode
+        vm.run bytecode
         expect(vm.output.string.to_i).to eq(int1 + int2)
       end
     end

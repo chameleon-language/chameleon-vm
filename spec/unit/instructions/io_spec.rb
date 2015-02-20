@@ -15,7 +15,7 @@ describe 'input-output instructions' do
       let(:stack_top_value) { 'O HAI' }
 
       it 'it removes it from the stack and prints it\'s value' do
-        expect(engine).to receive(:pop_from_stack!)
+        expect(engine).to receive(:pop_from_stack)
         expect(engine.output).to receive(:puts) do |to_put|
           expect(to_put).to eq(stack_top_value)
         end
@@ -30,7 +30,7 @@ describe 'input-output instructions' do
 
       it 'it throws an exception and leaves the stack be' do
         expect do
-          expect(engine).not_to receive(:pop_from_stack!)
+          expect(engine).not_to receive(:pop_from_stack)
           instruction_execution.call
         end.to raise_exception(Chameleon::VM::CorruptedStackError)
       end
@@ -48,7 +48,7 @@ describe 'input-output instructions' do
        and pushes it (without trailing ws) to the stack' do
       expect(engine.input).to receive(:gets)
 
-      expect(engine).to receive(:push_to_stack!) do |cell|
+      expect(engine).to receive(:push_to_stack) do |cell|
         expect(cell.type).to eq(Chameleon::VM::T_STRING)
         expect(cell.value).to eq(gets_value.strip)
       end

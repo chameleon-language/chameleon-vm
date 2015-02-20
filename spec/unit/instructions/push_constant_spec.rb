@@ -15,7 +15,7 @@ describe 'push constant instructions' do
       let(:instruction_arguments) { [int_const] }
 
       it 'it pushes the given integer value to the stack' do
-        expect(engine).to receive(:push_to_stack!) do |cell|
+        expect(engine).to receive(:push_to_stack) do |cell|
           expect(cell.type).to eq(Chameleon::VM::T_INT)
           expect(cell.value).to eq(int_const)
         end
@@ -30,7 +30,7 @@ describe 'push constant instructions' do
 
       it 'it throws an exception and leaves the stack be' do
         expect do
-          expect(engine).not_to receive(:push_to_stack!)
+          expect(engine).not_to receive(:push_to_stack)
           instruction_execution.call
         end.to raise_exception(Chameleon::VM::InvalidArgumentError)
       end

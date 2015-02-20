@@ -17,9 +17,9 @@ module Chameleon
                type is not '#{type}')
       end
 
-      def self.perform_multiple_tos_type_check!(engine, n, type, op_name)
-        cells = engine.top_of_stack(n)
-        return if cells.all? { |c| c.type == type }
+      def self.perform_multiple_tos_type_check!(engine, num, type, op_name)
+        cells = engine.top_of_stack(num)
+        return if cells.all? { |cell| cell.type == type }
 
         fail Chameleon::VM::CorruptedStackError,
              %(ERROR while trying to #{op_name} '#{cells.map(&:inspect)}',
