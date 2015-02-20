@@ -4,7 +4,7 @@ module Chameleon
       attr_reader :input, :output
       attr_accessor :stack_pointer
 
-      alias_method :goto!, :stack_pointer=
+      alias_method :goto, :stack_pointer=
 
       def initialize(input: STDIN, output: STDOUT)
         @input          = input
